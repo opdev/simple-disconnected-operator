@@ -1,0 +1,12 @@
+apiVersion: tools.opdev.io/v1alpha1
+kind: DisconnectedFriendlyApp
+metadata:
+  labels:
+    app.kubernetes.io/name: disconnectedfriendlyapp
+    app.kubernetes.io/instance: disconnectedfriendlyapp-sample
+    app.kubernetes.io/part-of: simple-disconnected-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: simple-disconnected-operator
+  name: disconnectedfriendlyapp-sample
+spec:
+  # TODO(user): Add fields here
