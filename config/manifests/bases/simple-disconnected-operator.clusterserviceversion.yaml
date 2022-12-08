@@ -1,0 +1,52 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+    operators.openshift.io/infrastructure-features: '["Disconnected"]'
+  name: simple-disconnected-operator.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: DisconnectedFriendlyApp is the Schema for the disconnectedfriendlyapps
+        API
+      displayName: Disconnected Friendly App
+      kind: DisconnectedFriendlyApp
+      name: disconnectedfriendlyapps.tools.opdev.io
+      version: v1alpha1
+  description: Deploys a minimal disconnected-environment-aware operator
+  displayName: Simple Disconnected Operator
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - sample
+  - example
+  - disconnected
+  links:
+  - name: Simple Disconnected Operator
+    url: https://simple-disconnected-operator.domain
+  maintainers:
+  - email: admins@example.com
+    name: Admins
+  maturity: alpha
+  provider:
+    name: The Operator Enablement Team
+    url: https://github.com/opdev
+  version: 0.0.0

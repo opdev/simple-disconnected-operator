@@ -17,6 +17,7 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"github.com/opdev/simple-disconnected-operator/image"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -32,13 +33,27 @@ type DisconnectedFriendlyAppSpec struct {
 
 // DisconnectedFriendlyAppStatus defines the observed state of DisconnectedFriendlyApp
 type DisconnectedFriendlyAppStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	// ObservedGeneration is the last generation that the controller has acted upon.
+	ObservedGeneration int64 `json:"observedGeneration,omitempty"`
+	// BusyBoxImage is the image that the controller will use for the BusyBox deployment.
+	// This is inferred from the environment variable DFA_BUSYBOX_IMAGE or defaulted.
+	BusyBoxImage string `json:"busyBoxImage,omitempty"`
+	// SleeperImage is the image that the controller will use for the BusyBox deployment.
+	// This is inferred from the environment variable DFA_SLEEPER_IMAGE or defaulted.
+	SleeperImage string `json:"sleeperImage,omitempty"`
+	// DefaultBusyBoxImage is the default value hardcoded for BusyBox in this operator.
+	DefaultBusyBoxImage string `json:"defaultBusyBoxImage,omitempty"`
+	// DefaultSleeperImage is the default value hardcoded for Sleeper in this operator.
+	DefaultSleeperImage string `json:"defaultSleeperImage,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 //+kubebuilder:resource:shortName=dfa
+// +kubebuilder:printcolumn:name="Resolved BusyBox Image",type=string,JSONPath=`.status.busyBoxImage`
+// +kubebuilder:printcolumn:name="Default BusyBox Image",type=string,JSONPath=`.status.defaultBusyBoxImage`
+// +kubebuilder:printcolumn:name="Resolved Sleeper Image",type=string,JSONPath=`.status.sleeperImage`
+// +kubebuilder:printcolumn:name="Default SleeperImage",type=string,JSONPath=`.status.defaultSleeperImage`
 
 // DisconnectedFriendlyApp is the Schema for the disconnectedfriendlyapps API
 type DisconnectedFriendlyApp struct {
@@ -79,4 +94,13 @@ func (a *DisconnectedFriendlyApp) SleeperReplicas() *int32 {
 	}
 
 	return a.Spec.SleeperReplicas
+}
+
+// PopulateStatus updates the status based on other values from the same resource.
+func (a *DisconnectedFriendlyApp) PopulateStatus() {
+	a.Status.ObservedGeneration = a.ObjectMeta.Generation
+	a.Status.BusyBoxImage = image.BusyBox()
+	a.Status.SleeperImage = image.Sleeper()
+	a.Status.DefaultBusyBoxImage = image.DefaultBusyBoxImage
+	a.Status.DefaultSleeperImage = image.DefaultSleeperImage
 }

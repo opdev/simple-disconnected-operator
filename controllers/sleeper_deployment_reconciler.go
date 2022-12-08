@@ -26,7 +26,7 @@ type SleeperDeploymentReconciler struct {
 //+kubebuilder:rbac:groups=tools.opdev.io,resources=disconnectedfriendlyapps,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=tools.opdev.io,resources=disconnectedfriendlyapps/status,verbs=get;update;patch
 //+kubebuilder:rbac:groups=tools.opdev.io,resources=disconnectedfriendlyapps/finalizers,verbs=update
-//+kubebuilder:rbac:groups=apps,resources=deployments,verbs=get;update;patch
+//+kubebuilder:rbac:groups=apps,resources=deployments,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=apps,resources=deployments/finalizers,verbs=update
 
 // Reconcile will ensure that the Sleeper Deployment for DisconnectedFriendlyApp

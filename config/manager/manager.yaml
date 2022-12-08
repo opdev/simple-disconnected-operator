@@ -72,6 +72,13 @@ spec:
         - --leader-elect
         image: controller:latest
         name: manager
+        env:
+        - name: RELATED_IMAGE_FEDORA
+          value: quay.io/fedora/fedora:latest
+        - name: DFA_SLEEPER_IMAGE
+          value: $(RELATED_IMAGE_FEDORA)
+        - name: DFA_BUSYBOX_IMAGE
+          value: $(RELATED_IMAGE_FEDORA)
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
