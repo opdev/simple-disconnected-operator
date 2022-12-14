@@ -1,0 +1,5 @@
+---
+# defaults file for Memcached
+size: 1
+default_image_memcached: "docker.io/memcached:1.4.36-alpine"
+related_image_memcached: "{{ lookup('env', 'RELATED_IMAGE_MEMCACHED') }}"
