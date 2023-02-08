@@ -17,11 +17,11 @@ metadata:
             },
             "name": "disconnectedfriendlyapp-sample"
           },
-          "spec": null
+          "spec": {}
         }
       ]
     capabilities: Basic Install
-    createdAt: "2023-02-08T16:40:21Z"
+    createdAt: "2023-02-08T17:16:41Z"
     operators.openshift.io/infrastructure-features: '["Disconnected"]'
     operators.operatorframework.io/builder: operator-sdk-v1.26.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
@@ -267,10 +267,10 @@ spec:
     name: The Operator Enablement Team
     url: https://github.com/opdev
   relatedImages:
-    - image: quay.io/fedora/fedora@sha256:b0c61163ff03105c5cce455b01f962e32d79895417bb153894cfa4e135bdb46a
-      name: fedora
     - image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d99a8d144816b951a67648c12c0b988936ccd25cf3754f3cd85ab8c01592248f
       name: kube-rbac-proxy
     - image: quay.io/opdev/simple-disconnected-operator-cm@sha256:b4d060da584f7f5f7935e8fb78a0b62b1abb829717ad522190ac7747abd9fbd1
       name: manager
+    - image: quay.io/fedora/fedora@sha256:b0c61163ff03105c5cce455b01f962e32d79895417bb153894cfa4e135bdb46a
+      name: fedora
   version: 0.0.1
