@@ -21,8 +21,9 @@ metadata:
         }
       ]
     capabilities: Basic Install
+    createdAt: "2023-02-08T16:40:21Z"
     operators.openshift.io/infrastructure-features: '["Disconnected"]'
-    operators.operatorframework.io/builder: operator-sdk-v1.25.3
+    operators.operatorframework.io/builder: operator-sdk-v1.26.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
   name: simple-disconnected-operator.v0.0.1
   namespace: placeholder
@@ -172,7 +173,7 @@ spec:
                       - /manager
                     env:
                       - name: RELATED_IMAGE_FEDORA
-                        value: quay.io/fedora/fedora@sha256:0f65bee641e821f8118acafb44c2f8fe30c2fc6b9a2b3729c0660376391aa117
+                        value: quay.io/fedora/fedora@sha256:b0c61163ff03105c5cce455b01f962e32d79895417bb153894cfa4e135bdb46a
                       - name: DFA_SLEEPER_IMAGE
                         value: $(RELATED_IMAGE_FEDORA)
                       - name: DFA_BUSYBOX_IMAGE
@@ -266,7 +267,7 @@ spec:
     name: The Operator Enablement Team
     url: https://github.com/opdev
   relatedImages:
-    - image: quay.io/fedora/fedora@sha256:0f65bee641e821f8118acafb44c2f8fe30c2fc6b9a2b3729c0660376391aa117
+    - image: quay.io/fedora/fedora@sha256:b0c61163ff03105c5cce455b01f962e32d79895417bb153894cfa4e135bdb46a
       name: fedora
     - image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d99a8d144816b951a67648c12c0b988936ccd25cf3754f3cd85ab8c01592248f
       name: kube-rbac-proxy
