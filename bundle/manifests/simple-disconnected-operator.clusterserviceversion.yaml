@@ -21,11 +21,17 @@ metadata:
         }
       ]
     capabilities: Basic Install
-    createdAt: "2023-02-08T17:48:05Z"
-    operators.openshift.io/infrastructure-features: '["Disconnected"]'
-    operators.operatorframework.io/builder: operator-sdk-v1.26.0
+    createdAt: "2023-11-15T21:16:39Z"
+    features.operators.openshift.io/disconnected: "true"
+    features.operators.openshift.io/fips-compliant: "false"
+    features.operators.openshift.io/proxy-aware: "false"
+    features.operators.openshift.io/tls-profiles: "false"
+    features.operators.openshift.io/token-auth-aws: "false"
+    features.operators.openshift.io/token-auth-azure: "false"
+    features.operators.openshift.io/token-auth-gcp: "false"
+    operators.operatorframework.io/builder: operator-sdk-v1.32.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
-  name: simple-disconnected-operator.v0.0.2
+  name: simple-disconnected-operator.v0.0.3
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -147,7 +153,7 @@ spec:
                       - --upstream=http://127.0.0.1:8080/
                       - --logtostderr=true
                       - --v=0
-                    image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d99a8d144816b951a67648c12c0b988936ccd25cf3754f3cd85ab8c01592248f
+                    image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d4883d7c622683b3319b5e6b3a7edfbf2594c18060131a8bf64504805f875522
                     name: kube-rbac-proxy
                     ports:
                       - containerPort: 8443
@@ -173,12 +179,12 @@ spec:
                       - /manager
                     env:
                       - name: RELATED_IMAGE_FEDORA
-                        value: quay.io/fedora/fedora@sha256:b0c61163ff03105c5cce455b01f962e32d79895417bb153894cfa4e135bdb46a
+                        value: quay.io/fedora/fedora@sha256:626f4480c997fb048a7e89a57ff6b270a70c6dc474e7755ec5be6b4815904ae5
                       - name: DFA_SLEEPER_IMAGE
                         value: $(RELATED_IMAGE_FEDORA)
                       - name: DFA_BUSYBOX_IMAGE
                         value: $(RELATED_IMAGE_FEDORA)
-                    image: quay.io/opdev/simple-disconnected-operator-cm@sha256:c493825f45109230e0a03b4f102bad10130164330d396f545e2ae88794b4f7d9
+                    image: quay.io/opdev/simple-disconnected-operator-cm@sha256:4036c74acf42bfeef520da2e7f906b8be685e3dd617ba2fa94124808f670c35f
                     livenessProbe:
                       httpGet:
                         path: /healthz
@@ -267,10 +273,10 @@ spec:
     name: The Operator Enablement Team
     url: https://github.com/opdev
   relatedImages:
-    - image: quay.io/fedora/fedora@sha256:b0c61163ff03105c5cce455b01f962e32d79895417bb153894cfa4e135bdb46a
-      name: fedora
-    - image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d99a8d144816b951a67648c12c0b988936ccd25cf3754f3cd85ab8c01592248f
+    - image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d4883d7c622683b3319b5e6b3a7edfbf2594c18060131a8bf64504805f875522
       name: kube-rbac-proxy
-    - image: quay.io/opdev/simple-disconnected-operator-cm@sha256:c493825f45109230e0a03b4f102bad10130164330d396f545e2ae88794b4f7d9
+    - image: quay.io/opdev/simple-disconnected-operator-cm@sha256:4036c74acf42bfeef520da2e7f906b8be685e3dd617ba2fa94124808f670c35f
       name: manager
-  version: 0.0.2
+    - image: quay.io/fedora/fedora@sha256:626f4480c997fb048a7e89a57ff6b270a70c6dc474e7755ec5be6b4815904ae5
+      name: fedora
+  version: 0.0.3
